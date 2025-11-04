@@ -23,6 +23,8 @@ class UpdateTeamInfoForm extends Component
     public function mount($team)
     {
         $this->team = $team;
+        $this->phone = $team->phone;
+        $this->fax = $team->fax;
     }
     public function render()
     {

@@ -1,6 +1,6 @@
 <x-form-section submit="save">
     <x-slot name="title">
-        {{ __('Team Info') }}
+        {{ __('Team Address') }}
     </x-slot>
 
     <x-slot name="description">

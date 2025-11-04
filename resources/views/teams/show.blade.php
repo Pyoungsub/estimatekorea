@@ -11,6 +11,8 @@
             <x-section-border />
             @livewire('teams.update-team-name-form', ['team' => $team])
             <x-section-border />
+            @livewire('teams.update-team-brn-form', ['team' => $team])
+            <x-section-border />
             @livewire('teams.update-team-address-form', ['team' => $team])
             <x-section-border />
             @livewire('teams.update-team-info-form', ['team' => $team])
