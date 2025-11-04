@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('roads', function (Blueprint $table) {
             $table->id();
             $table->foreignId('city_id')->constrained()->onDelete('cascade');
-            $table->string('road');
+            $table->string('name');
             $table->timestamps();
         });
     }

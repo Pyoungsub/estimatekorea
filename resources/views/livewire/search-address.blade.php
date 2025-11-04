@@ -9,18 +9,12 @@
         pagination:[],
         keyword:'',
         errDesc:'',
-        nonDeliveryZone:['사랑면', '산양읍', '육지면', '용남면', '한산면'],
         postcode:'',
         state:'',
         city:'',
         road:'',
         extra_address:'',
-        detail_address:'',
-        receiver:'',
-        receiver_mobile:'',
-        name:'{{auth()->user()->name}}',
-        mobile:'{{auth()->user()->mobile}}',
-        addresses:[],
+        addresses:$wire.entangle('addresses'),
         searchAddress(currentPage)
         {
             this.submitting = true;
@@ -93,20 +87,6 @@
                 alert('에러발생');
             });
         },
-        checkAddress(address)
-        {
-            var available = false;
-            if(
-                address.siNm != '제주특별자치도' 
-                && !(address.sggNm == '서산시' && address.rn == '지곡면') 
-                && !(address.siNm == '전라남도' && address.sggNm == '신안군')
-                && !(address.siNm == '경상남도' && address.sggNm == '통영시' && this.nonDeliveryZone.find((element) => element == address.emdNm))
-            )
-            {
-                available = true;
-            }
-            return available;
-        },
         setAddress(index)
         {
             var selected_address = this.addresses[index];
@@ -152,39 +132,59 @@
             </div>
         </x-slot>
         <x-slot name="content">
-            <div class="">
-                <input type="text" x-model="keyword" :disabled="submitting" @keyup.enter.prevent="searchAddress(1)">
-                <button type="button" @click="searchAddress(1)">우편번호 찾기</button>
-                <p x-show="errDesc" x-text="errDesc"></p>
-                <div class="" x-show="postcode">
-                    <p x-text="postcode"></p>
-                    <p x-text="state"></p>
-                    <p x-text="city"></p>
-                    <p x-text="road"></p>
-                    <p x-text="extra_address"></p>
-                    <x-input x-model="detail_address" type="text" placeholder="{{__('나머지 주소')}}" />
-                    <button x-show="!receiver" @click="receiver = name, receiver_mobile = mobile" x-text="'{{__('내 정보 사용')}}'"></button>
-                    <x-input x-model="receiver" type="text" placeholder="{{__('받으시는 분')}}" />
-                    <x-input x-mask="999-9999-9999" x-model="receiver_mobile" type="tel" placeholder="{{__('010-XXXX-XXXX')}}" />
+            <div class="space-y-3">
+                <div class="flex gap-2">
+                    <input type="text"
+                        x-model="keyword"
+                        :disabled="submitting"
+                        @keyup.enter.prevent="searchAddress(1)"
+                        placeholder="도로명 입력"
+                        class="flex-1 border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100">
+                    <button type="button"
+                            @click="searchAddress(1)"
+                            class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded transition">
+                        우편번호 찾기
+                    </button>
                 </div>
-                <div x-show="addresses.length > 0" class="w-full border">
-                    <template x-for="(address, index) in addresses">
-                        <button class="p-2 disabled:line-through disabled:cursor-not-allowed" :disabled="checkAddress(address) !== true" x-text="address.roadAddr" @click="setAddress(index)"></button>
+
+                <p x-show="errDesc" x-text="errDesc" class="text-red-600 text-sm"></p>
+
+                <div x-show="addresses.length > 0" class="border rounded divide-y bg-white shadow-sm">
+                    <template x-for="(address, index) in addresses" :key="index">
+                        <button @click="$dispatch('set-address', {address: address}); $wire.addressModal = false;"
+                                class="block w-full text-left px-3 py-2 hover:bg-blue-50 disabled:bg-gray-100 disabled:line-through disabled:text-gray-400">
+                            <span x-text="address.roadAddr"></span>
+                        </button>
                     </template>
                 </div>
-                <div class="flex items-center justify-center gap-2" x-show="totalPages > 1">
-                    <button x-show="currentPage != 1 && totalPages > 5" @click="searchAddress(1)">처음</button>
-                    <button x-show="currentPage > 5 && totalPages > 5" @click="searchAddress(currentPage-5)">이전</button>
+                <div class="flex items-center justify-center gap-1 text-sm mt-2" x-show="totalPages > 1">
+                    <button x-show="currentPage != 1 && totalPages > 5"
+                            @click="searchAddress(1)"
+                            class="px-2 py-1 hover:text-blue-600">처음</button>
+
+                    <button x-show="currentPage > 5 && totalPages > 5"
+                            @click="searchAddress(currentPage-5)"
+                            class="px-2 py-1 hover:text-blue-600">이전</button>
+
                     <template x-for="page in pagination">
-                        <button @click="searchAddress(page)" x-text="page" :class="page == currentPage ? 'text-blue-700 font-bold' : ''" :disabled="page == currentPage"></button>
+                        <button @click="searchAddress(page)"
+                                :disabled="page == currentPage"
+                                x-text="page"
+                                class="px-2 py-1 rounded transition"
+                                :class="page == currentPage ? 'bg-blue-600 text-white font-bold cursor-default' : 'hover:bg-blue-50'">
+                        </button>
                     </template>
-                    <button x-show="currentPage + 5 <= totalPages" @click="searchAddress(currentPage+5)">다음</button>
-                    <button x-show="currentPage != totalPages && totalPages > 5" @click="searchAddress(totalPages)">끝</button>
+                    <button x-show="currentPage + 5 <= totalPages"
+                            @click="searchAddress(currentPage+5)"
+                            class="px-2 py-1 hover:text-blue-600">다음</button>
+
+                    <button x-show="currentPage != totalPages && totalPages > 5"
+                            @click="searchAddress(totalPages)"
+                            class="px-2 py-1 hover:text-blue-600">끝</button>
                 </div>
-            </div>
+            </div>            
         </x-slot>
         <x-slot name="footer">
-            <button x-show="postcode" class="disabled:bg-gray-100" :disabled="!(postcode && detail_address && receiver && receiver_mobile)" @click="$wire.addAddress(postcode, state, city, road, extra_address, detail_address, receiver, receiver_mobile)">{{__('사용하기')}}</button>            
         </x-slot>
     </x-dialog-modal>
 </div>

@@ -70,4 +70,8 @@ class Team extends JetstreamTeam
             .urlencode($name)
             .'&color=7F9CF5&background=EBF4FF';
     }
+    public function address_detail()
+    {
+        return $this->hasOne(AddressDetail::class);
+    }
 }

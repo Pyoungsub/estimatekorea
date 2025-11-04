@@ -22,5 +22,6 @@
                 </div>
             @endif
         </div>
+        <livewire:search-address @saved="$refresh">
     </div>
 </x-app-layout>

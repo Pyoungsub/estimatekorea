@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('extra_addresses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('road_id')->constrained()->onDelete('cascade');
-            $table->string('extra_address'); 
+            $table->char('postcode',5)->index(); // postcode
+            $table->string('extra_address');
             $table->timestamps();
         });
     }
