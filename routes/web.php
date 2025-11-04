@@ -21,5 +21,5 @@ Route::middleware([
 
 Route::get('/auth/{provider}', function ($provider) {
     return Socialite::driver($provider)->redirect();
-});
+})->name('socialite.redirect');
 Route::get('/auth/{provider}/callback', [App\Http\Controllers\SocialiteLogin::class, 'handleProviderCallback']);
