@@ -14,7 +14,7 @@ class SocialiteLogin extends Controller
     //
     public function handleProviderCallback($provider)
     {
-        $socialUser = Socialite::driver($provider)->user();
+        $socialUser = Socialite::driver($provider)->stateless()->user();
 
         // Social account must have email
         if (!$socialUser->getEmail()) {
