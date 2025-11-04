@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('name');
             $table->boolean('personal_team');
             $table->string('logo_path', 2048)->nullable();
+            $table->string('brn')->unique()->nullable();
+            $table->string('phone')->nullable();
+            $table->string('fax')->nullable();
             $table->timestamps();
         });
     }

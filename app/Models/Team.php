@@ -23,7 +23,10 @@ class Team extends JetstreamTeam
     protected $fillable = [
         'name',
         'personal_team',
-        'logo_path'
+        'logo_path',
+        'brn',
+        'phone',
+        'fax',
     ];
 
     /**

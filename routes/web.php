@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
+use App\Models\Team;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -15,3 +17,9 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+
+Route::get('/auth/{provider}', function ($provider) {
+    return Socialite::driver($provider)->redirect();
+});
+Route::get('/auth/{provider}/callback', [App\Http\Controllers\SocialiteLogin::class, 'handleProviderCallback']);

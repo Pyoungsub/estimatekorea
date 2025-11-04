@@ -16,8 +16,6 @@ return new class extends Migration
             $table->foreignId('team_id')->constrained()->onDelete('cascade');
             $table->foreignId('extra_address_id')->constrained()->onDelete('cascade');
             $table->string('details');
-            $table->string('phone');
-            $table->string('fax');
             $table->timestamps();
         });
     }

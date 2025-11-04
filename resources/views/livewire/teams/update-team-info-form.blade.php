@@ -1,16 +1,15 @@
 <x-form-section submit="save">
     <x-slot name="title">
-        {{ __('Team Info') }}
+        {{ __('Team Contact') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('The team\'s address and contact information.') }}
+        {{ __('The team\'s contact information.') }}
     </x-slot>
     <x-slot name="form">
         <div 
             class="col-span-6 sm:col-span-4"
             x-data="{
-                postcode: $wire.entangle('postcode'), 
                 phone: $wire.entangle('phone'),
                 fax: $wire.entangle('fax'),
                 formatKoreanPhone(value) {
@@ -47,23 +46,9 @@
             @if(Gate::check('update', $team))
                 <button type="button" id="address" class="mt-2 text-xs border px-4 py-2 rounded-lg" wire:click="$dispatch('add-address')">{{__('Search Address')}}</button>
             @endif
-            <div class="mt-2" x-show="postcode">
-                <p class="text-sm mb-1">우편번호: <span x-text="postcode"></span></p>
-                <x-input type="text" id="address" class="mt-2 block w-full" wire:model="address" readonly />
-                <x-input type="text" id="details" class="mt-2 block w-full" wire:model="details" placeholder="상세주소를 입력해주세요." />
+            <div class="mt-2">
                 <x-input type="text" id="phone" class="mt-2 block w-full" x-model="phone" maxlength="13" placeholder="전화번호를 입력해주세요." />
                 <x-input type="text" id="fax" class="mt-2 block w-full" x-model="fax" maxlength="13" placeholder="팩스번호를 입력해주세요." />
-            </div>
-            <div class="mt-2" x-show="!postcode">
-                @if($team->address_detail)
-                    <p class="text-sm mb-1">우편번호: {{ $team->address_detail->extra_address->postcode }}</p>
-                    <x-input type="text" id="address" class="mt-2 block w-full" value="{{ $team->address_detail->extra_address->extra_address }}" readonly />
-                    <x-input type="text" id="details" class="mt-2 block w-full" value="{{ $team->address_detail->details }}" readonly />
-                    <x-input type="text" id="phone" class="mt-2 block w-full" value="{{ $team->address_detail->phone }}" readonly />
-                    <x-input type="text" id="fax" class="mt-2 block w-full" value="{{ $team->address_detail->fax }}" readonly />
-                @else
-                    <p class="text-sm text-gray-600">{{ __('No address selected.') }}</p>
-                @endif
             </div>
         </div>
     </x-slot>
