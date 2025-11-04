@@ -16,6 +16,21 @@ class RecordVisit
      */
     public function handle(Request $request, Closure $next): Response
     {
+        $agent = strtolower($request->userAgent() ?? '');
+
+        // 봇 필터링
+        $bots = [
+            'bot', 'crawl', 'spider', 'slurp', 'bing', 'duckduck',
+            'baidu', 'yandex', 'sogou', 'naver', 'kakao'
+        ];
+
+        foreach ($bots as $bot) {
+            if (str_contains($agent, $bot)) {
+                return $next($request); // 봇인 경우 방문 기록하지 않음
+            }
+        }
+
+        // 방문자 HLL 처리
         $today = now()->format('Y-m-d');
         $key = "visits:daily:{$today}";
 
