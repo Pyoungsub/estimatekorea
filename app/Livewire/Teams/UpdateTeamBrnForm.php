@@ -11,7 +11,7 @@ class UpdateTeamBrnForm extends Component
     public function save()
     {
         $this->validate([
-            'brn' => 'nullable|string|max:20',
+            'brn' => 'nullable|string|max:20|unique:teams,brn,' . $this->team->id,
         ]);
         $this->team->update([
             'brn' => $this->brn,
