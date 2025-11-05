@@ -44,8 +44,8 @@
         >
             <x-label for="phone" value="Team Contact" />
             <div class="mt-2">
-                <x-input type="text" id="phone" class="mt-2 block w-full" x-model="phone" maxlength="13" placeholder="전화번호를 입력해주세요." :disabled="! Gate::check('update', $team)" />
-                <x-input type="text" id="fax" class="mt-2 block w-full" x-model="fax" maxlength="13" placeholder="팩스번호를 입력해주세요." :disabled="! Gate::check('update', $team)" />
+                <x-input type="tel" id="phone" class="mt-2 block w-full" x-model="phone" maxlength="13" placeholder="전화번호를 입력해주세요." :disabled="! Gate::check('update', $team)" />
+                <x-input type="tel" id="fax" class="mt-2 block w-full" x-model="fax" maxlength="13" placeholder="팩스번호를 입력해주세요." :disabled="! Gate::check('update', $team)" />
             </div>
         </div>
     </x-slot>
