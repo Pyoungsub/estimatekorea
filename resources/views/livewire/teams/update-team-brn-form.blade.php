@@ -27,6 +27,7 @@
             <x-label for="address" value="Team Address" />
             <div class="mt-2">
                 <x-input type="text" id="brn" class="mt-2 block w-full" x-model="brn" maxlength="13" placeholder="사업자 등록번호를 입력해주세요." :disabled="! Gate::check('update', $team)" />
+                <x-input-error for="brn" class="mt-2" />
             </div>
         </div>
     </x-slot>
