@@ -25,7 +25,7 @@
             <div class="mt-2" x-show="!postcode">
                 @if($team->address_detail)
                     <p class="text-sm mb-1">우편번호: {{ $team->address_detail->extra_address->postcode }}</p>
-                    <x-input type="text" id="address" class="mt-2 block w-full" value="{{ $team->address_detail->extra_address->extra_address }}" readonly />
+                    <x-input type="text" id="address" class="mt-2 block w-full" value="{{ $team->address_detail->extra_address->road->city->state->name }} {{ $team->address_detail->extra_address->road->city->name }} {{ $team->address_detail->extra_address->road->name }} {{ $team->address_detail->extra_address->extra_address }}" readonly />
                     <x-input type="text" id="details" class="mt-2 block w-full" value="{{ $team->address_detail->details }}" readonly />
                 @else
                     <p class="text-sm text-gray-600">{{ __('No address selected.') }}</p>

@@ -59,7 +59,9 @@ class UpdateTeamAddressForm extends Component
     }
     public function mount($team)
     {
-        $this->team = $team;
+        $this->team = $team->load([
+            'address_detail.extra_address.road.city.state'
+        ]);
     }
     public function render()
     {
