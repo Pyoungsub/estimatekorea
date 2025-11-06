@@ -77,4 +77,24 @@ class Team extends JetstreamTeam
     {
         return $this->hasOne(AddressDetail::class);
     }
+    public function getFullAddressAttribute()
+    {
+        if ($this->address_detail && $this->address_detail->extra_address) {
+            $extraAddress = $this->address_detail->extra_address;
+            $road = $extraAddress->road;
+            $city = $road->city;
+            $state = $city->state;
+
+            return sprintf(
+                '%s %s %s %s, %s',
+                $state->name,
+                $city->name,
+                $road->name,
+                $extraAddress->extra_address,
+                $this->address_detail->details
+            );
+        }
+
+        return null;
+    }
 }

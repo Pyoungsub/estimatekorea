@@ -6,3 +6,44 @@
 [x-cloak] {
     display: none;
 }
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    #print-area, #print-area * {
+        visibility: visible;
+    }
+
+    #print-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+    }
+    .no-print {
+        display: none !important;
+    }
+    input {
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+        line-height: 1.1 !important;  /* 줄 간격 줄이기 */
+        margin: 0 !important;         /* 여백 제거 */
+        height: auto !important;      /* 고정 높이 제거 */
+    }
+
+    .print-footer {
+        position: fixed;
+        bottom: 10mm;
+        left: 0;
+        right: 0;
+        text-align: center;
+    }
+}
+@page {
+    size: A4;
+    margin: 16mm;
+}
