@@ -110,11 +110,11 @@
                     </div>
                     <div class="flex items-center gap-2">
                         <span class="font-medium w-28">대표전화:</span>
-                        <input class="flex-1 border-b px-1 py-0.5" placeholder="02-1234-5678" x-model="company_mobile" maxlength="13">
+                        <input class="flex-1 border-b px-1 py-0.5" placeholder="02)1234-5678" x-model="company_mobile" maxlength="13">
                     </div>
                     <div class="flex items-center gap-2">
                         <span class="font-medium w-28">FAX:</span>
-                        <input class="flex-1 border-b px-1 py-0.5" placeholder="02-1234-5678" x-model="fax" maxlength="13">
+                        <input class="flex-1 border-b px-1 py-0.5" placeholder="02)1234-5678" x-model="fax" maxlength="13">
                     </div>
                     
 
