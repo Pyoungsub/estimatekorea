@@ -149,6 +149,7 @@
                                 <td class="p-2 text-right">
                                     <input 
                                         class="w-24 flex-1 border-b px-1 py-0.5 text-right"
+                                        type="tel"
                                         x-data="{ priceInput: '' }"
                                         x-init="priceInput = item.price.toLocaleString()"
                                         @input="
@@ -192,7 +193,7 @@
                 </div>
 
                 <div class="flex justify-between py-1 items-center">
-                    <span>부가세 (<input type="text" x-model.number="vatRate" class="w-12 border-b text-right" min="0">%)</span>
+                    <span>부가세 (<input type="tel" x-model.number="vatRate" class="w-12 border-b text-right" min="0">%)</span>
                     <span x-text="vat().toLocaleString() + '원'"></span>
                 </div>
 
