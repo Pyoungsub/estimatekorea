@@ -19,7 +19,10 @@
         total() { // 합계
             return this.supplyPrice() + this.vat();
         },
+        brn: '',
         mobile: '',
+        company_mobile: '',
+        fax: '',
         formatKoreanPhone(value) {
             value = value.replace(/[^0-9]/g, '');
             if (value.startsWith('02')) {
@@ -39,9 +42,17 @@
                 return value.replace(/(0\d{2})(\d{3,4})(\d{1,4})/, '$1\)$2-$3');
             }
             return value;
+        },
+        formatKoreanBRN(value) {
+            return value.replace(/(\d{3})(\d{2})(\d{5})/, '$1-$2-$3');
         }
     }"
-    x-init="$watch('mobile', value => mobile = formatKoreanPhone(value));"                    
+    x-init="
+        $watch('brn', value => brn = formatKoreanBRN(value));
+        $watch('mobile', value => mobile = formatKoreanPhone(value));
+        $watch('company_mobile', value => company_mobile = formatKoreanPhone(value));
+        $watch('fax', value => fax = formatKoreanPhone(value));
+    "
 >
     <div id="print-area" class="max-w-5xl mx-auto bg-white shadow-xl rounded-2xl p-4 sm:p-10 relative overflow-x-auto">
         <div class="text-center mb-10">
@@ -78,7 +89,10 @@
                         <span class="font-medium w-28">회사명:</span>
                         <input class="flex-1 border-b px-1 py-0.5" placeholder="예: 유한회사 데이드림">
                     </div>
-
+                    <div class="flex items-center gap-2">
+                        <span class="font-medium w-28">주소:</span>
+                        <input class="flex-1 border-b px-1 py-0.5" placeholder="예: 서울 강남구 논현로151길 41 (신사동) 3020호">
+                    </div>
                     <div class="flex items-center gap-2">
                         <span class="font-medium w-28">대표:</span>
                         <input class="flex-1 border-b px-1 py-0.5" placeholder="예: 심평섭">
@@ -86,18 +100,17 @@
 
                     <div class="flex items-center gap-2">
                         <span class="font-medium w-28">사업자등록번호:</span>
-                        <input class="flex-1 border-b px-1 py-0.5" placeholder="669-87-00246">
+                        <input class="flex-1 border-b px-1 py-0.5" placeholder="669-87-00246" x-model="brn" maxlength="12">
                     </div>
-
                     <div class="flex items-center gap-2">
                         <span class="font-medium w-28">대표전화:</span>
-                        <input class="flex-1 border-b px-1 py-0.5" placeholder="02-1234-5678">
+                        <input class="flex-1 border-b px-1 py-0.5" placeholder="02-1234-5678" x-model="company_mobile" maxlength="13">
                     </div>
-
                     <div class="flex items-center gap-2">
-                        <span class="font-medium w-28">주소:</span>
-                        <input class="flex-1 border-b px-1 py-0.5" placeholder="예: 서울 강남구 논현로151길 41 (신사동) 3020호">
+                        <span class="font-medium w-28">FAX:</span>
+                        <input class="flex-1 border-b px-1 py-0.5" placeholder="02-1234-5678" x-model="fax" maxlength="13">
                     </div>
+                    
 
                 </div>
             </div>
