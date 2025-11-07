@@ -44,6 +44,12 @@
             return value;
         },
         formatKoreanBRN(value) {
+            value = value.replace(/[^0-9]/g, '');
+            if (value.length > 5) {
+                value = value.slice(0, 3) + '-' + value.slice(3, 5) + '-' + value.slice(5, 10);
+            } else if (value.length > 3) {
+                value = value.slice(0, 3) + '-' + value.slice(3, 5);
+            }
             return value.replace(/(\d{3})(\d{2})(\d{5})/, '$1-$2-$3');
         }
     }"
