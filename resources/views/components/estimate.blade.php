@@ -172,10 +172,6 @@
             </div>
 
             <button @click="addItem()" class="mt-3 px-3 py-1.5 rounded-lg bg-gray-100 hover:bg-gray-200 text-sm no-print">+ 품목 추가</button>
-
-            <div class="flex justify-end mt-8 text-lg font-bold">
-                총 합계: <span class="ml-2" x-text="supplyPrice().toLocaleString()"></span> 원
-            </div>
         </div>
 
         <!-- 합계 -->
