@@ -7,8 +7,10 @@
     display: none;
 }
 @media print {
-    body * {
-        visibility: hidden;
+    html, body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        zoom: 1; /* Disable auto fit */
     }
 
     #print-area, #print-area * {
@@ -19,7 +21,10 @@
         position: absolute;
         left: 0;
         top: 0;
-        width: 100%;
+        transform: scale(0.8);
+        transform-origin: top left;
+        width: 125%;
+
         box-shadow: none !important;
         -webkit-box-shadow: none !important;
     }
