@@ -17,11 +17,14 @@
 
     #print-area {
         position: absolute;
-        left: 0;
-        top: 0;
+        top: 0; left: 0;
         width: 100%;
+        height: auto;
+        margin: 0 !important;
+        padding: 0 !important; /* Remove internal padding too */
+        background: white !important;
         box-shadow: none !important;
-        -webkit-box-shadow: none !important;
+        border-radius: 0 !important;
     }
     .no-print {
         display: none !important;
@@ -42,7 +45,8 @@
         right: 0;
         text-align: center;
     }
-}
-@page {
-    size: A4;
+    @page {
+        size: A4;
+        margin: 10mm;
+    }
 }

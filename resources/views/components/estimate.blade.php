@@ -64,31 +64,28 @@
         <div class="text-center mb-10">
             <h1 class="text-6xl font-extrabold tracking-wide leading-tight">견&nbsp;적&nbsp;서</h1>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
             <!-- 고객 정보 -->
             <div class="">
-                <h2 class="font-semibold text-lg mb-3">고객 정보</h2>
+                <h2 class="font-semibold text-lg mb-3 flex-none">고객 정보</h2>
                 <div class="space-y-2 text-sm leading-5 text-gray-700">
                     <div class="flex items-center gap-2">
-                        <span class="font-medium w-28">고객명:</span>
+                        <span class="font-medium w-14 flex-none">고객명:</span>
                         <input class="flex-1 border-b px-1 py-0.5" placeholder="홍길동컴퍼니">
                     </div>
-
                     <div class="flex items-center gap-2">
-                        <span class="font-medium w-28">담당자:</span>
+                        <span class="font-medium w-14 flex-none">담당자:</span>
                         <input class="flex-1 border-b px-1 py-0.5" placeholder="홍길동">
                     </div>
-
                     <div class="flex items-center gap-2">
-                        <span class="font-medium w-28">연락처:</span>
+                        <span class="font-medium w-14 flex-none">연락처:</span>
                         <input class="flex-1 border-b px-1 py-0.5" maxlength="13" x-model="mobile" placeholder="010-1234-5678">
                     </div>
-
                 </div>
             </div>
 
             <!-- 내 회사 정보 -->
-            <div class="md:col-span-2">
+            <div class="sm:col-span-2">
                 <h2 class="font-semibold text-lg mb-3">공급자 정보</h2>
                 <div class="space-y-2 text-sm leading-5 text-gray-700">
                     <div class="flex items-center gap-2">
