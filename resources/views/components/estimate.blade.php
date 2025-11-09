@@ -14,7 +14,7 @@
             return this.items.reduce((sum, item) => sum + (item.qty * item.price), 0);
         },
         vat() { // 부가세
-            return Math.floor(this.supplyPrice() * (this.vatRate / 100));
+            return Math.round(this.supplyPrice() * (this.vatRate / 100));
         },
         total() { // 합계
             return this.supplyPrice() + this.vat();
