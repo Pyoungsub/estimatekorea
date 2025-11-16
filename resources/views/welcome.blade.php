@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>무료 온라인 견적서 작성 – PDF로 바로 출력 | EstimateKorea</title>
+        <title>무료 견적서 작성 · 무료 온라인 견적서 작성 – PDF로 바로 출력 | EstimateKorea</title>
         <meta name="description" content="간단한 입력만으로 전문 견적서를 무료로 만들고 PDF로 다운로드하세요. 프리랜서, 소상공인 누구나 쉽게 사용 가능한 온라인 견적서 서비스.">
         <meta name="keywords" content="무료 견적서, 온라인 견적서, 견적서 작성, 견적서 PDF, 프리랜서 견적서, 소상공인 견적서">
 
